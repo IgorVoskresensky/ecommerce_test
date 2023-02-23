@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/pageOneFragment">
+
+    <fragment
+        android:id="@+id/pageOneFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.PageOneFragment"
+        android:label="fragment_page_one"
+        tools:layout="@layout/fragment_page_one" >
+        <action
+            android:id="@+id/action_pageOneFragment_to_pageTwoFragment"
+            app:destination="@id/pageTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pageTwoFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.PageTwoFragment"
+        android:label="fragment_page_two"
+        tools:layout="@layout/fragment_page_two" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+</navigation>

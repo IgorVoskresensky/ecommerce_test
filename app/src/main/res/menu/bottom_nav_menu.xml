@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pageOneFragment"
+        android:tooltipText="explore"
+        android:icon="@drawable/ic_page_one"
+        android:title="Page one" />
+
+    <item
+        android:id="@+id/pageTwoFragment"
+        android:tooltipText="explore"
+        android:icon="@drawable/ic_page_two"
+        android:title="Page two" />
+
+    <item
+        android:id="@+id/cartFragment"
+        android:tooltipText="explore"
+        android:icon="@drawable/ic_page_cart"
+        android:title="Cart" />
+
+    <item
+        android:id="@+id/chatFragment"
+        android:tooltipText="explore"
+        android:icon="@drawable/ic_page_chat"
+        android:title="Chat" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:tooltipText="explore"
+        android:icon="@drawable/ic_page_profile"
+        android:title="Profile" />
+
+</menu>
