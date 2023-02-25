@@ -34,4 +34,13 @@
         android:name="ru.ivos.ecommerce_test.presentation.fragments.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/loginRegFragment"
+        android:name="ru.ivos.ecommerce_test.presentation.fragments.LoginRegFragment"
+        android:label="fragment_login_reg"
+        tools:layout="@layout/fragment_login_reg" >
+        <action
+            android:id="@+id/action_loginRegFragment_to_pageOneFragment"
+            app:destination="@id/pageOneFragment" />
+    </fragment>
 </navigation>

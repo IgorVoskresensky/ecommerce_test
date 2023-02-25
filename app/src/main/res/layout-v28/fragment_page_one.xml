@@ -122,6 +122,9 @@
         app:queryHint="@string/what_are_you_looking"
         app:searchIcon="@drawable/ic_search" />
 
+<!--    Все иконки помещаются на экран как в макете, так и в верстке,
+        поэтому в скролле необходимости нет-->
+
     <LinearLayout
         android:id="@+id/llCategories"
         android:layout_width="match_parent"
@@ -480,7 +483,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/flash_sale"
+                    android:text="@string/brands"
                     android:layout_gravity="start"
                     android:textSize="16sp"
                     android:textColor="@color/black"

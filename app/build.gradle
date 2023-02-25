@@ -35,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    viewBinding{
+        enabled true
+    }
 }
 
 dependencies {
@@ -77,4 +80,10 @@ dependencies {
 
     //paging
     implementation("androidx.paging:paging-runtime:3.1.1")
+
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //carousel recyclerview
+    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
 }
