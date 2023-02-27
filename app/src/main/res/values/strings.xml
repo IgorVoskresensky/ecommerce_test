@@ -39,4 +39,6 @@
     <string name="restore_purchase">Restore purchase</string>
     <string name="help">Help</string>
     <string name="log_out">Log out</string>
+    <string name="you_are_added">Вы добавили товар в избранное</string>
+    <string name="something_went_wrong">Something went wrong...:(</string>
 </resources>

@@ -1,21 +1,21 @@
 package ru.ivos.ecommerce_test.data.remote
 
-import ru.ivos.ecommerce_test.data.models.remote.DataDetails
-import ru.ivos.ecommerce_test.data.models.remote.DataFlashSaleList
-import ru.ivos.ecommerce_test.data.models.remote.DataLatestList
-import ru.ivos.ecommerce_test.data.models.remote.DataWords
 import ru.ivos.ecommerce_test.domain.ApiRepo
+import ru.ivos.ecommerce_test.domain.models.remote.Details
+import ru.ivos.ecommerce_test.domain.models.remote.FlashSaleList
+import ru.ivos.ecommerce_test.domain.models.remote.LatestList
+import ru.ivos.ecommerce_test.domain.models.remote.Words
 import javax.inject.Inject
 
 class ApiRepoImpl @Inject constructor(
     private val apiRepo: ApiRepo
 ) {
 
-    suspend fun getFlashSale() : DataFlashSaleList = apiRepo.getFlashSale()
+    suspend fun getFlashSale() : FlashSaleList = apiRepo.getFlashSale()
 
-    suspend fun getLatest() : DataLatestList = apiRepo.getLatest()
+    suspend fun getLatest() : LatestList = apiRepo.getLatest()
 
-    suspend fun getDetails() : DataDetails = apiRepo.getDetails()
+    suspend fun getDetails() : Details = apiRepo.getDetails()
 
-    suspend fun getBrands() : DataWords = apiRepo.getBrands()
+    suspend fun getBrands() : Words = apiRepo.getBrands()
 }

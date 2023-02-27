@@ -1,10 +1,10 @@
-package ru.ivos.ecommerce_test.data.models.remote
+package ru.ivos.ecommerce_test.domain.models.remote
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DataLatestList(
+data class LatestList(
     @SerializedName("latest")
     @Expose
-    val latestList: List<DataLatest>
+    val latestList: List<Latest>
 )

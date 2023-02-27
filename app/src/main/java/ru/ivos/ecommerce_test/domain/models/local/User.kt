@@ -1,4 +1,4 @@
-package ru.ivos.ecommerce_test.data.models.local
+package ru.ivos.ecommerce_test.domain.models.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import ru.ivos.ecommerce_test.data.models.local.User
+import ru.ivos.ecommerce_test.domain.models.local.User
+import ru.ivos.ecommerce_test.domain.AppDao
 
 @Database(entities = [User::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {

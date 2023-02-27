@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.ivos.ecommerce_test.data.local.AppDao
+import ru.ivos.ecommerce_test.domain.AppDao
 import ru.ivos.ecommerce_test.data.local.AppDatabase
 import ru.ivos.ecommerce_test.domain.ApiRepo
 import ru.ivos.ecommerce_test.utils.Constants
