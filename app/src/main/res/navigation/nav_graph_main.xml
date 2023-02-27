@@ -18,7 +18,11 @@
         android:id="@+id/pageTwoFragment"
         android:name="ru.ivos.ecommerce_test.presentation.fragments.PageTwoFragment"
         android:label="fragment_page_two"
-        tools:layout="@layout/fragment_page_two" />
+        tools:layout="@layout/fragment_page_two" >
+        <action
+            android:id="@+id/action_pageTwoFragment_to_pageOneFragment"
+            app:destination="@id/pageOneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.ivos.ecommerce_test.presentation.fragments.ProfileFragment"

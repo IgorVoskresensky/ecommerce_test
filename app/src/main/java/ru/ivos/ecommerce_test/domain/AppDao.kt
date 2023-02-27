@@ -1,10 +1,10 @@
-package ru.ivos.ecommerce_test.data.local
+package ru.ivos.ecommerce_test.domain
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.ivos.ecommerce_test.data.models.local.User
+import ru.ivos.ecommerce_test.domain.models.local.User
 
 @Dao
 interface AppDao {

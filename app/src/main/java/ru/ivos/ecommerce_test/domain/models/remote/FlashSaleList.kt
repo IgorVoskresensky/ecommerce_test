@@ -1,10 +1,10 @@
-package ru.ivos.ecommerce_test.data.models.remote
+package ru.ivos.ecommerce_test.domain.models.remote
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DataFlashSaleList(
+data class FlashSaleList(
     @SerializedName("flash_sale")
     @Expose
-    val flashSaleList: List<DataFlashSale>
+    val flashSaleList: List<FlashSale>
 )

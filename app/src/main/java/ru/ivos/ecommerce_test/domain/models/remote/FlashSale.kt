@@ -1,9 +1,9 @@
-package ru.ivos.ecommerce_test.data.models.remote
+package ru.ivos.ecommerce_test.domain.models.remote
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DataLatest(
+data class FlashSale(
     @SerializedName("category")
     @Expose
     val category: String = "",
@@ -12,7 +12,10 @@ data class DataLatest(
     val name: String = "",
     @SerializedName("price")
     @Expose
-    val price: Int = 0,
+    val price: Double = 0.0,
+    @SerializedName("discount")
+    @Expose
+    val discount: Int = 0,
     @SerializedName("image_url")
     @Expose
     val imageUrl: String = ""

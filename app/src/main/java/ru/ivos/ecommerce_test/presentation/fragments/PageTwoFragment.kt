@@ -1,60 +1,153 @@
 package ru.ivos.ecommerce_test.presentation.fragments
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import ru.ivos.ecommerce_test.R
+import ru.ivos.ecommerce_test.databinding.FragmentPageTwoBinding
+import ru.ivos.ecommerce_test.domain.models.remote.Details
+import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
+import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
+import ru.ivos.ecommerce_test.utils.PageTwoStates
+import ru.ivos.ecommerce_test.utils.gone
+import ru.ivos.ecommerce_test.utils.showToast
+import ru.ivos.ecommerce_test.utils.visible
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [PageTwoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class PageTwoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
+    private var _binding: FragmentPageTwoBinding? = null
+    private val binding: FragmentPageTwoBinding
+        get() = _binding ?: throw RuntimeException("Binding is empty")
+
+    private val viewModel by viewModels<PageTwoViewModel>()
+
+    private lateinit var details: Details
+
+    private lateinit var adapter: DetailsAdapter
+    private lateinit var image : ImageView
+    private lateinit var name : TextView
+    private lateinit var price : TextView
+    private lateinit var description : TextView
+    private lateinit var rating : TextView
+    private lateinit var reviews : TextView
+    private lateinit var quantity : TextView
+    private lateinit var sum : TextView
+    private lateinit var colorOne : ImageView
+    private lateinit var colorTwo : ImageView
+    private lateinit var colorThree : ImageView
+    private lateinit var plus : AppCompatButton
+    private lateinit var minus : AppCompatButton
+    private lateinit var addToCard : AppCompatButton
+
+    private var dynamicSum = 0.0
+    private var quantityCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page_two, container, false)
+    ): View {
+        _binding = FragmentPageTwoBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PageTwoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PageTwoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+        observeViewModel()
+        setupClickListeners()
+    }
+
+    private fun initViews() = with(binding) {
+        image = ivImagePageTwo
+        name = tvNamePageTwo
+        price = tvPricePageTwo
+        description = tvDescriptionPageTwo
+        rating = tvRatingValuePageTwo
+        reviews = tvReviewsValuePageTwo
+        quantity = tvQuantityPageTwo
+        sum = tvSumPageTwo
+        colorOne = ivColorOnePageTwo
+        colorTwo = ivColorTwoPageTwo
+        colorThree = ivColorThreePageTwo
+        plus = btnPlusPageTwo
+        minus = btnMinusPageTwo
+        addToCard = btnAddToCartPageTwo
+        adapter = DetailsAdapter()
+        crvPageTwo.adapter = adapter
+    }
+
+    private fun observeViewModel() {
+        viewModel.state.observe(viewLifecycleOwner) {
+            when(it) {
+                is PageTwoStates.LOADING -> {
+                    binding.screenGroupPageTwo.gone()
+                    binding.pbPageTwo.visible()
+                }
+                is PageTwoStates.SUCCESS -> {
+                    binding.screenGroupPageTwo.visible()
+                    binding.pbPageTwo.gone()
+                    details = it.details
+                    Glide.with(image).load(details.imageUrls.first()).into(image)
+                    adapter.differ.submitList(it.details.imageUrls)
+                    name.text = details.name
+                    price.text = details.price.toString()
+                    description.text = details.description
+                    rating.text = details.rating.toString()
+                    reviews.text = "(${details.numberOfReviews} reviews)"
+                    colorOne.background.setTint(Color.parseColor(details.colors[0]))
+                    colorTwo.background.setTint(Color.parseColor(details.colors[1]))
+                    colorThree.background.setTint(Color.parseColor(details.colors[2]))
+                }
+                is PageTwoStates.FAILURE -> {
+                    binding.tvNoInternetPageTwo.visible()
                 }
             }
+        }
+    }
+
+    private fun setupClickListeners() {
+        binding.btnBackPageTwo.setOnClickListener {
+            findNavController().navigate(R.id.action_pageTwoFragment_to_pageOneFragment)
+        }
+        binding.crvPageTwo.setItemSelectListener(object : CarouselLayoutManager.OnSelected{
+            override fun onItemSelected(position: Int) {
+                Glide.with(image).load(adapter.differ.currentList[position]).into(image)
+            }
+        })
+        plus.setOnClickListener {
+            quantity.text = "Quantity: ${++quantityCount}"
+            dynamicSum += details.price
+            sum.text = dynamicSum.toString()
+        }
+        minus.setOnClickListener {
+            if(quantityCount > 0) {
+                --quantityCount
+            }
+            quantity.text = "Quantity: ${quantityCount}"
+            dynamicSum -= details.price
+            if(dynamicSum <= 0 ){
+                dynamicSum = 0.0
+                sum.text = dynamicSum.toString()
+            } else {
+                sum.text = dynamicSum.toString()
+            }
+        }
+        addToCard.setOnClickListener {
+            showToast(requireContext().getString(R.string.you_are_added))
+        }
     }
 }

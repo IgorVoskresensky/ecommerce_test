@@ -1,6 +1,7 @@
 package ru.ivos.ecommerce_test.data.local
 
-import ru.ivos.ecommerce_test.data.models.local.User
+import ru.ivos.ecommerce_test.domain.models.local.User
+import ru.ivos.ecommerce_test.domain.AppDao
 import javax.inject.Inject
 
 class AppDaoImpl @Inject constructor(
