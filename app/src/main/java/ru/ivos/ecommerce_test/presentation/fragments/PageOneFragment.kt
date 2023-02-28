@@ -80,7 +80,9 @@ class PageOneFragment : Fragment() {
                     brandsAdapter.differ.submitList(it.listBrands)
                 }
                 is PageOneStates.FAILURE -> {
+                    binding.screenGroupPageOne.gone()
                     binding.tvNoInternetPageOne.visible()
+                    binding.pbPageOne.gone()
                 }
             }
         }
