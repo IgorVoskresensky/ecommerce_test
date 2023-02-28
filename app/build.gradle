@@ -87,4 +87,7 @@ dependencies {
 
     //carousel recyclerview
     implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
+
+    //circle image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

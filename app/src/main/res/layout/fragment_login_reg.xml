@@ -23,73 +23,116 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etFirstName"
         android:layout_width="290dp"
         android:layout_height="30dp"
         android:layout_marginTop="70dp"
-        android:background="@drawable/bg_edit_text_reg_log"
+        app:color="@android:color/transparent"
         android:hint="@string/first_name"
-        android:textSize="12sp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:fontFamily="@font/montserrat_medium"
-        android:textFontWeight="500"
+        android:textColorHint="#7B7B7B"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSignInOrLogin"/>
+        app:layout_constraintTop_toBottomOf="@id/tvSignInOrLogin">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInputFirstName"
+            android:layout_width="290dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_edit_text_reg_log"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="textPersonName"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLastName"
         android:layout_width="290dp"
         android:layout_height="30dp"
         android:layout_marginTop="35dp"
-        android:background="@drawable/bg_edit_text_reg_log"
-        android:fontFamily="@font/montserrat_medium"
-        android:gravity="center"
+        app:color="@android:color/transparent"
         android:hint="@string/last_name"
-        android:textAllCaps="true"
-        android:textFontWeight="500"
-        android:textSize="12sp"
+        android:textColorHint="#7B7B7B"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etFirstName" />
+        app:layout_constraintTop_toBottomOf="@id/etFirstName">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInputLastName"
+            android:layout_width="290dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_edit_text_reg_log"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="textPersonName"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etPassword"
         android:layout_width="290dp"
         android:layout_height="30dp"
         android:layout_marginTop="35dp"
-        android:background="@drawable/bg_edit_text_reg_log"
-        android:fontFamily="@font/montserrat_medium"
-        android:gravity="center"
+        app:endIconMode="password_toggle"
         android:hint="@string/password"
-        android:inputType="textPassword"
-        android:textAllCaps="true"
-        android:textFontWeight="500"
-        android:textSize="12sp"
+        android:textColorHint="#7B7B7B"
         android:visibility="gone"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etFirstName" />
+        app:layout_constraintTop_toBottomOf="@id/etFirstName">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInputPassword"
+            android:layout_width="290dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_edit_text_reg_log"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etEmail"
         android:layout_width="290dp"
         android:layout_height="30dp"
         android:layout_marginTop="100dp"
-        android:background="@drawable/bg_edit_text_reg_log"
+        app:color="@android:color/transparent"
         android:hint="@string/email"
-        android:textSize="12sp"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:fontFamily="@font/montserrat_medium"
-        android:textFontWeight="500"
+        android:textColorHint="#7B7B7B"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etFirstName"/>
+        app:layout_constraintTop_toBottomOf="@id/etFirstName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etInputEmail"
+            android:layout_width="290dp"
+            android:layout_height="30dp"
+            android:background="@drawable/bg_edit_text_reg_log"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:fontFamily="@font/montserrat_medium"
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignInOrLogin"

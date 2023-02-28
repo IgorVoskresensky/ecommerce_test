@@ -113,6 +113,8 @@ class PageTwoFragment : Fragment() {
                     colorThree.background.setTint(Color.parseColor(details.colors[2]))
                 }
                 is PageTwoStates.FAILURE -> {
+                    binding.screenGroupPageTwo.gone()
+                    binding.pbPageTwo.gone()
                     binding.tvNoInternetPageTwo.visible()
                 }
             }
