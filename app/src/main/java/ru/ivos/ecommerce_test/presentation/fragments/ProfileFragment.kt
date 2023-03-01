@@ -63,5 +63,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_loginRegFragment)
             (activity as MainActivity).setBottomNavInvisible()
         }
+        binding.tvNameProfilePage.text = viewModel.getCurrentUserName()
     }
 }
