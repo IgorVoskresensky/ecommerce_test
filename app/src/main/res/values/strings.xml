@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign in</string>
+    <string name="login">Login</string>
     <string name="welcome_back">Welcome back</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
@@ -41,4 +42,5 @@
     <string name="log_out">Log out</string>
     <string name="you_are_added">Вы добавили товар в избранное</string>
     <string name="something_went_wrong">Something went wrong...:(</string>
+    <string name="cart_fragment">Cart fragment</string>
 </resources>

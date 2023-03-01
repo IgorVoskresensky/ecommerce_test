@@ -12,8 +12,8 @@ interface AppDao {
     @Query("SELECT * FROM users ORDER BY id")
     suspend fun getUsers() : List<User>
 
-    @Query("SELECT * FROM users WHERE id = :id")
-    suspend fun getUser(id: Int) : User
+    @Query("SELECT * FROM users WHERE firstName = :name")
+    suspend fun getUser(name: String) : User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)

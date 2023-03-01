@@ -7,5 +7,5 @@ class GetUserUseCase @Inject constructor(
     private val appDao: AppDao
 ) {
 
-    suspend operator fun invoke(id: Int) = appDao.getUser(id)
+    suspend operator fun invoke(name: String) = appDao.getUser(name)
 }

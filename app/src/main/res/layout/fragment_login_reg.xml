@@ -17,7 +17,6 @@
         android:gravity="center"
         android:text="@string/sign_in"
         android:textColor="@color/black"
-        android:textFontWeight="600"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,13 +25,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etFirstName"
         android:layout_width="290dp"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="70dp"
-        app:color="@android:color/transparent"
-        android:hint="@string/first_name"
         android:textColorHint="#7B7B7B"
+        android:hint="@string/first_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSignInOrLogin">
@@ -40,26 +41,29 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etInputFirstName"
             android:layout_width="290dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
             android:background="@drawable/bg_edit_text_reg_log"
-            android:textSize="12sp"
-            android:gravity="center"
             android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
             android:inputType="textPersonName"
-            />
+            android:textSize="12sp"
+            android:maxLength="20"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLastName"
         android:layout_width="290dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="35dp"
-        app:color="@android:color/transparent"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
         android:hint="@string/last_name"
         android:textColorHint="#7B7B7B"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,12 +72,14 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etInputLastName"
             android:layout_width="290dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
             android:background="@drawable/bg_edit_text_reg_log"
-            android:textSize="12sp"
-            android:gravity="center"
             android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
             android:inputType="textPersonName"
+            android:textSize="12sp"
+            android:maxLength="20"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,12 +87,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etPassword"
         android:layout_width="290dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="35dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
         app:endIconMode="password_toggle"
         android:hint="@string/password"
         android:textColorHint="#7B7B7B"
         android:visibility="gone"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,10 +105,11 @@
             android:id="@+id/etInputPassword"
             android:layout_width="290dp"
             android:layout_height="30dp"
+            android:padding="0dp"
             android:background="@drawable/bg_edit_text_reg_log"
-            android:textSize="12sp"
-            android:gravity="center"
             android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:textSize="12sp"
             android:inputType="textPassword"
             />
 
@@ -110,11 +118,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etEmail"
         android:layout_width="290dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="100dp"
-        app:color="@android:color/transparent"
+        android:layout_height="40dp"
+        android:layout_marginTop="90dp"
         android:hint="@string/email"
         android:textColorHint="#7B7B7B"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +132,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etInputEmail"
             android:layout_width="290dp"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
             android:background="@drawable/bg_edit_text_reg_log"
-            android:textSize="12sp"
-            android:gravity="center"
             android:fontFamily="@font/montserrat_medium"
+            android:gravity="center"
+            android:textSize="12sp"
             android:inputType="textEmailAddress"
             />
 
@@ -145,7 +154,6 @@
         android:fontFamily="@font/montserrat_medium"
         android:textAllCaps="false"
         android:textColor="@color/text_white"
-        android:textFontWeight="700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etFirstName"/>
@@ -166,11 +174,10 @@
             android:fontFamily="@font/montserrat_light"
             android:text="@string/already_have_an_account"
             android:textSize="11sp"
-            android:textFontWeight="500"
             />
 
         <TextView
-            android:id="@+id/tvRegOrLogChanger"
+            android:id="@+id/tvRegOrLogSwitcher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -179,7 +186,6 @@
             android:text="Log in"
             android:textSize="11sp"
             android:textColor="#254FE6"
-            android:textFontWeight="500"
             />
 
     </LinearLayout>
@@ -188,10 +194,10 @@
         android:id="@+id/btnSingInWithGoogle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llAlreadyHave">
+        app:layout_constraintTop_toBottomOf="@+id/btnSignInOrLogin">
 
         <ImageView
             android:layout_width="24dp"
@@ -206,7 +212,6 @@
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:textFontWeight="500"
             android:layout_gravity="center"/>
 
     </LinearLayout>
@@ -232,7 +237,6 @@
             android:fontFamily="@font/montserrat_medium"
             android:textColor="@color/black"
             android:textSize="12sp"
-            android:textFontWeight="500"
             android:layout_gravity="center"/>
 
     </LinearLayout>
