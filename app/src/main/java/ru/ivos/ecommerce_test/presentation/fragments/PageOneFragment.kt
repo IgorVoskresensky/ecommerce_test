@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentPageOneBinding
+import ru.ivos.ecommerce_test.presentation.MainActivity
 import ru.ivos.ecommerce_test.presentation.adapters.BrandsAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.FlashSaleAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.LatestAdapter
@@ -35,6 +38,7 @@ class PageOneFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPageOneBinding.inflate(inflater, container, false)
+        (activity as MainActivity).setBottomNavVisible()
         return binding.root
     }
 
@@ -59,6 +63,9 @@ class PageOneFragment : Fragment() {
     private fun initAdapters() = with(binding) {
         flashSaleAdapter = FlashSaleAdapter()
         rvFlashSalePageOne.adapter = flashSaleAdapter
+        flashSaleAdapter.setOnItemClickListener {
+            findNavController().navigate(R.id.action_pageOneFragment_to_pageTwoFragment)
+        }
         latestAdapter = LatestAdapter()
         rvLatestPageOne.adapter = latestAdapter
         brandsAdapter = BrandsAdapter()
@@ -78,6 +85,11 @@ class PageOneFragment : Fragment() {
                     flashSaleAdapter.differ.submitList(it.listFlash)
                     latestAdapter.differ.submitList(it.listLatest)
                     brandsAdapter.differ.submitList(it.listBrands)
+
+                    if(it.listFlash.isEmpty() || it.listLatest.isEmpty() || it.listBrands.isEmpty()) {
+                        binding.screenGroupPageOne.gone()
+                        binding.tvNoInternetPageOne.visible()
+                    }
                 }
                 is PageOneStates.FAILURE -> {
                     binding.screenGroupPageOne.gone()

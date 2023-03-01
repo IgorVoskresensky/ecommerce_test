@@ -10,7 +10,7 @@ class AppDaoImpl @Inject constructor(
 
     suspend fun getUsers() : List<User> = appDao.getUsers()
 
-    suspend fun getUser(id: Int) : User = appDao.getUser(id)
+    suspend fun getUser(name: String) : User = appDao.getUser(name)
 
     suspend fun insertUser(user: User) = appDao.insertUser(user)
 

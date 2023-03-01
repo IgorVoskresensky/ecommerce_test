@@ -2,7 +2,6 @@ package ru.ivos.ecommerce_test.presentation.fragments
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +21,6 @@ import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
 import ru.ivos.ecommerce_test.utils.PageTwoStates
 import ru.ivos.ecommerce_test.utils.gone
-import ru.ivos.ecommerce_test.utils.showToast
 import ru.ivos.ecommerce_test.utils.visible
 
 @AndroidEntryPoint
@@ -149,7 +147,7 @@ class PageTwoFragment : Fragment() {
             }
         }
         addToCard.setOnClickListener {
-            showToast(requireContext().getString(R.string.you_are_added))
+            findNavController().navigate(R.id.action_pageTwoFragment_to_cartFragment)
         }
     }
 }

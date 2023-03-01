@@ -13,6 +13,11 @@
         <action
             android:id="@+id/action_pageOneFragment_to_pageTwoFragment"
             app:destination="@id/pageTwoFragment" />
+        <action
+            android:id="@+id/action_pageOneFragment_to_loginRegFragment"
+            app:destination="@id/loginRegFragment"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/pageTwoFragment"
@@ -22,12 +27,21 @@
         <action
             android:id="@+id/action_pageTwoFragment_to_pageOneFragment"
             app:destination="@id/pageOneFragment" />
+        <action
+            android:id="@+id/action_pageTwoFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.ivos.ecommerce_test.presentation.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_loginRegFragment"
+            app:destination="@id/loginRegFragment"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="ru.ivos.ecommerce_test.presentation.fragments.ChatFragment"
@@ -45,6 +59,8 @@
         tools:layout="@layout/fragment_login_reg" >
         <action
             android:id="@+id/action_loginRegFragment_to_pageOneFragment"
-            app:destination="@id/pageOneFragment" />
+            app:destination="@id/pageOneFragment"
+            app:popUpTo="@id/nav_graph_main"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
