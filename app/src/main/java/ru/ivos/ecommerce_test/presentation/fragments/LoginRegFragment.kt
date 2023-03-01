@@ -49,16 +49,6 @@ class LoginRegFragment : Fragment() {
         observeViewModel()
         setupClickListeners()
         setupEditTexts()
-
-
-//        binding.testEditText.setOnFocusChangeListener {_, hasFocus ->
-//            if (hasFocus) {
-//                binding.testTextLayout.hint = null
-//            }
-//            else {
-//                binding.testTextLayout.hint = "parol"
-//            }
-//        }
     }
 
     private fun setupClickListeners() = with(binding) {
@@ -86,6 +76,7 @@ class LoginRegFragment : Fragment() {
                 )
                 viewModel.insertUser(user)
                 viewModel.setIsUserSignedIn(true)
+                viewModel.setCurrentUserName("${user.firstName} ${user.lastName}")
                 findNavController().navigate(R.id.action_loginRegFragment_to_pageOneFragment)
             } else {
                 showLongToast("User already exist")
@@ -104,6 +95,9 @@ class LoginRegFragment : Fragment() {
             val userIsExist = userList.any { it.firstName == etInputFirstName.text.toString().trim() }
             if(userIsExist){
                 viewModel.getUser(etInputFirstName.text.toString().trim())
+                viewModel.currentUser.observe(viewLifecycleOwner){
+                    viewModel.setCurrentUserName("${it?.firstName} ${it?.lastName}")
+                }
                 viewModel.setIsUserSignedIn(true)
                 findNavController().navigate(R.id.action_loginRegFragment_to_pageOneFragment)
             } else {

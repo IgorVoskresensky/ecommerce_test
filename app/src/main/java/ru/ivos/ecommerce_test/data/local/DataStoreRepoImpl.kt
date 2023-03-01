@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 import ru.ivos.ecommerce_test.domain.DataStoreRepo
@@ -26,6 +27,24 @@ class DataStoreRepoImpl(
     override suspend fun getBoolean(key: String): Boolean? {
         return try {
             val prefKey = booleanPreferencesKey(key)
+            val preference = context.datastore.data.first()
+            preference[prefKey]
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    override suspend fun putString(key: String, value: String) {
+        val prefKey = stringPreferencesKey(key)
+        context.datastore.edit {
+            it[prefKey] = value
+        }
+    }
+
+    override suspend fun getString(key: String): String? {
+        return try {
+            val prefKey = stringPreferencesKey(key)
             val preference = context.datastore.data.first()
             preference[prefKey]
         } catch (e: Exception) {
