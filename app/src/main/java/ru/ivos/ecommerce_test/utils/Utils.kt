@@ -3,13 +3,9 @@ package ru.ivos.ecommerce_test.utils
 import android.graphics.Bitmap
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import ru.ivos.ecommerce_test.utils.Constants.MY_LOG_TAG
-
-var bitmap: Bitmap? = null
-
 
 fun Fragment.showLongToast(message: String) {
     Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()

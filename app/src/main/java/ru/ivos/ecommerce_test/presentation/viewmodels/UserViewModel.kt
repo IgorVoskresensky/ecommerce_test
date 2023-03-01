@@ -1,5 +1,6 @@
 package ru.ivos.ecommerce_test.presentation.viewmodels
 
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -37,7 +38,8 @@ class UserViewModel @Inject constructor(
     }
 
     fun getUser(name: String) = viewModelScope.launch {
-        _currentUser.value = getUserUseCase.invoke(name)
+        val user = getUserUseCase.invoke(name)
+        _currentUser.value = user
     }
 
     fun insertUser(user: User) = viewModelScope.launch {
@@ -50,13 +52,14 @@ class UserViewModel @Inject constructor(
         _currentUser.value = null
     }
 
-    fun updateUserPhoto(uri: Uri) = viewModelScope.launch {
-        val oldUser = _currentUser.value!!
+    fun updateUserPhoto(oldUser: User, bitmap: Bitmap?) = viewModelScope.launch {
+//        val oldUser = _currentUser.value!!
         val newUser = User(
             id = oldUser.id,
             firstName = oldUser.firstName,
             lastName = oldUser.lastName,
-            email = oldUser.email
+            email = oldUser.email,
+            bitmap = bitmap
         )
         insertUserUseCase.invoke(newUser)
     }

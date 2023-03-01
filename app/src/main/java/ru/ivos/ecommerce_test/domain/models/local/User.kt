@@ -1,5 +1,6 @@
 package ru.ivos.ecommerce_test.domain.models.local
 
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -13,5 +14,7 @@ data class User(
     @ColumnInfo(name = "lastName")
     val lastName: String,
     @ColumnInfo(name = "email")
-    val email: String
+    val email: String,
+    @ColumnInfo(name = "photo")
+    val bitmap: Bitmap? = null
 )
