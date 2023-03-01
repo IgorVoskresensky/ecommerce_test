@@ -150,4 +150,9 @@ class PageTwoFragment : Fragment() {
             findNavController().navigate(R.id.action_pageTwoFragment_to_cartFragment)
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
