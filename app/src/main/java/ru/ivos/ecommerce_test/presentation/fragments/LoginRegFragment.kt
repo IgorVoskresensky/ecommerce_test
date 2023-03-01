@@ -80,8 +80,6 @@ class LoginRegFragment : Fragment() {
                 findNavController().navigate(R.id.action_loginRegFragment_to_pageOneFragment)
             } else {
                 showLongToast("User already exist")
-                etInputLastName.setText("")
-                etInputEmail.setText("")
                 showLoginElements()
             }
         } else {

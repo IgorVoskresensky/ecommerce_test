@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.Dispatchers
@@ -65,6 +66,8 @@ class ProfileFragment : Fragment() {
             if (user.bitmap != null) {
                 photo.setImageBitmap((user.bitmap))
 //                Glide.with(photo).load(user.bitmap).circleCrop().into(photo)
+            } else {
+                Glide.with(photo).load(R.drawable.ic_dude_from_flash_item).circleCrop().into(photo)
             }
         }
     }
@@ -75,7 +78,8 @@ class ProfileFragment : Fragment() {
         }
         binding.llLogOutProfilePage.setOnClickListener {
             viewModel.setIsUserSignedIn(false)
-            viewModel.deleteUser(user.id)
+//            viewModel.deleteUser(user.id)
+            viewModel.updateUserPhoto(user, null)
             findNavController().navigate(R.id.action_profileFragment_to_loginRegFragment)
             (activity as MainActivity).setBottomNavInvisible()
         }

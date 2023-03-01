@@ -49,7 +49,7 @@ class UserViewModel @Inject constructor(
 
     fun deleteUser(id: Int) = viewModelScope.launch {
         deleteUserUseCase.invoke(id)
-        _currentUser.value = null
+//        _currentUser.value = null
     }
 
     fun updateUserPhoto(oldUser: User, bitmap: Bitmap?) = viewModelScope.launch {
