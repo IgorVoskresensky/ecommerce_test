@@ -1,5 +1,6 @@
 package ru.ivos.ecommerce_test.presentation.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import ru.ivos.ecommerce_test.databinding.FragmentPageTwoBinding
 import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
+import ru.ivos.ecommerce_test.utils.Constants
 import ru.ivos.ecommerce_test.utils.PageTwoStates
 import ru.ivos.ecommerce_test.utils.gone
 import ru.ivos.ecommerce_test.utils.visible
@@ -47,6 +49,7 @@ class PageTwoFragment : Fragment() {
     private lateinit var colorOne : ImageView
     private lateinit var colorTwo : ImageView
     private lateinit var colorThree : ImageView
+    private lateinit var btnShare: ImageView
     private lateinit var plus : AppCompatButton
     private lateinit var minus : AppCompatButton
     private lateinit var addToCard : AppCompatButton
@@ -84,6 +87,7 @@ class PageTwoFragment : Fragment() {
         plus = btnPlusPageTwo
         minus = btnMinusPageTwo
         addToCard = btnAddToCartPageTwo
+        btnShare = btnSharePageTwo
         adapter = DetailsAdapter()
         crvPageTwo.adapter = adapter
     }
@@ -148,6 +152,16 @@ class PageTwoFragment : Fragment() {
         }
         addToCard.setOnClickListener {
             findNavController().navigate(R.id.action_pageTwoFragment_to_cartFragment)
+        }
+        btnShare.setOnClickListener {
+            val shareLink = "${Constants.BASE_URL}f7f99d04-4971-45d5-92e0-70333383c239"
+            val intent = Intent()
+            intent.apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, shareLink)
+                type = "text/plain"
+            }
+            startActivity(intent)
         }
     }
 

@@ -84,11 +84,27 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <ImageView
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_add_to_favorites_page_two" />
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/btnAddToFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_add_to_favorites_page_two" />
+
+            <ImageView
+                android:id="@+id/btnRemovefromFavorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:src="@drawable/ic_remove_from_favorites_page_two" />
+
+        </FrameLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -107,6 +123,7 @@
             android:layout_weight="1" />
 
         <ImageView
+            android:id="@+id/btnSharePageTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
