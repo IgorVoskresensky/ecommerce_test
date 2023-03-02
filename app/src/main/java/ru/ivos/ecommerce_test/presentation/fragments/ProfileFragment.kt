@@ -1,5 +1,6 @@
 package ru.ivos.ecommerce_test.presentation.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import ru.ivos.ecommerce_test.databinding.FragmentProfileBinding
 import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.presentation.MainActivity
 import ru.ivos.ecommerce_test.presentation.viewmodels.UserViewModel
+import ru.ivos.ecommerce_test.utils.bitmap
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -35,11 +37,13 @@ class ProfileFragment : Fragment() {
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         photo.setImageURI(it)
+        val bit = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+        bitmap = bit
         if (it != null) {
             lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.updateUserPhoto(
                     user,
-                    MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+                    bit
                 )
             }
         }
@@ -58,9 +62,9 @@ class ProfileFragment : Fragment() {
         setupClickListeners()
         photo = binding.ivAvatarProfilePage
 
-        val string = viewModel.getCurrentUserName()
-        val name = string?.substringBefore(" ")
-        viewModel.getUser(name!!)
+        val userFullName = viewModel.getCurrentUserName()
+        val userFirstName = userFullName?.substringBefore(" ")
+        viewModel.getUser(userFirstName!!)
         viewModel.currentUser.observe(viewLifecycleOwner) {
             user = it!!
             if (user.bitmap != null) {
@@ -82,6 +86,7 @@ class ProfileFragment : Fragment() {
             viewModel.updateUserPhoto(user, null)
             findNavController().navigate(R.id.action_profileFragment_to_loginRegFragment)
             (activity as MainActivity).setBottomNavInvisible()
+            bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_dude_from_flash_item)
         }
 
         binding.tvNameProfilePage.text = viewModel.getCurrentUserName()
