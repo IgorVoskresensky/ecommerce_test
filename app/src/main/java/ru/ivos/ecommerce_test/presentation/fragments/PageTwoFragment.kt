@@ -3,13 +3,13 @@ package ru.ivos.ecommerce_test.presentation.fragments
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -20,10 +20,7 @@ import ru.ivos.ecommerce_test.databinding.FragmentPageTwoBinding
 import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
-import ru.ivos.ecommerce_test.utils.Constants
-import ru.ivos.ecommerce_test.utils.PageTwoStates
-import ru.ivos.ecommerce_test.utils.gone
-import ru.ivos.ecommerce_test.utils.visible
+import ru.ivos.ecommerce_test.utils.*
 
 @AndroidEntryPoint
 class PageTwoFragment : Fragment() {
@@ -49,7 +46,9 @@ class PageTwoFragment : Fragment() {
     private lateinit var colorOne : ImageView
     private lateinit var colorTwo : ImageView
     private lateinit var colorThree : ImageView
-    private lateinit var btnShare: ImageView
+    private lateinit var share: ImageView
+    private lateinit var addToFavorite: ImageView
+    private lateinit var removeFavorite: ImageView
     private lateinit var plus : AppCompatButton
     private lateinit var minus : AppCompatButton
     private lateinit var addToCard : AppCompatButton
@@ -87,7 +86,9 @@ class PageTwoFragment : Fragment() {
         plus = btnPlusPageTwo
         minus = btnMinusPageTwo
         addToCard = btnAddToCartPageTwo
-        btnShare = btnSharePageTwo
+        share = btnSharePageTwo
+        addToFavorite = btnAddToFavorites
+        removeFavorite = btnRemovefromFavorites
         adapter = DetailsAdapter()
         crvPageTwo.adapter = adapter
     }
@@ -153,7 +154,7 @@ class PageTwoFragment : Fragment() {
         addToCard.setOnClickListener {
             findNavController().navigate(R.id.action_pageTwoFragment_to_cartFragment)
         }
-        btnShare.setOnClickListener {
+        share.setOnClickListener {
             val shareLink = "${Constants.BASE_URL}f7f99d04-4971-45d5-92e0-70333383c239"
             val intent = Intent()
             intent.apply {
@@ -162,6 +163,16 @@ class PageTwoFragment : Fragment() {
                 type = "text/plain"
             }
             startActivity(intent)
+        }
+        addToFavorite.setOnClickListener {
+            viewModel.insertFavorite(mapDetailsToFavorite(details))
+            addToFavorite.gone()
+            removeFavorite.visible()
+        }
+        removeFavorite.setOnClickListener {
+            viewModel.deleteFavorite(mapDetailsToFavorite(details).name)
+            removeFavorite.gone()
+            addToFavorite.visible()
         }
     }
 
