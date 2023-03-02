@@ -14,9 +14,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.ActivityMainBinding
+import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.presentation.fragments.LoginRegFragment
 import ru.ivos.ecommerce_test.presentation.viewmodels.UserViewModel
+import ru.ivos.ecommerce_test.utils.bitmap
 import ru.ivos.ecommerce_test.utils.gone
+import ru.ivos.ecommerce_test.utils.showLog
 import ru.ivos.ecommerce_test.utils.visible
 
 @AndroidEntryPoint
@@ -28,12 +31,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     private val viewModel by viewModels<UserViewModel>()
+    private lateinit var user: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_splash)
 
         val isUserSignedIn = viewModel.getIsUserSignedIn()
+        getUser()
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
@@ -47,6 +52,19 @@ class MainActivity : AppCompatActivity() {
             if(isUserSignedIn != true) {
                 navController.navigate(R.id.action_pageOneFragment_to_loginRegFragment)
                 binding.bnvMain.gone()
+            }
+        }
+    }
+
+    private fun getUser() {
+
+        val userFullName = viewModel.getCurrentUserName()
+        val userFirstName = userFullName?.substringBefore(" ")
+        viewModel.getUser(userFirstName!!)
+        viewModel.currentUser.observe(this) {
+            user = it!!
+            if (user.bitmap != null) {
+                bitmap = user.bitmap
             }
         }
     }

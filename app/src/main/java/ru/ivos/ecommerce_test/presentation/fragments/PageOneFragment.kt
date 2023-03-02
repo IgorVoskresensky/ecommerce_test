@@ -4,6 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.SimpleCursorAdapter
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,9 +20,7 @@ import ru.ivos.ecommerce_test.presentation.adapters.BrandsAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.FlashSaleAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.LatestAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageOneViewModel
-import ru.ivos.ecommerce_test.utils.PageOneStates
-import ru.ivos.ecommerce_test.utils.gone
-import ru.ivos.ecommerce_test.utils.visible
+import ru.ivos.ecommerce_test.utils.*
 
 @AndroidEntryPoint
 class PageOneFragment : Fragment() {
@@ -32,6 +34,9 @@ class PageOneFragment : Fragment() {
     private lateinit var flashSaleAdapter: FlashSaleAdapter
     private lateinit var latestAdapter: LatestAdapter
     private lateinit var brandsAdapter: BrandsAdapter
+    private lateinit var suggestionAdapter: ArrayAdapter<String>
+
+    private var brandList = emptyList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,18 +51,7 @@ class PageOneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapters()
         observeViewModel()
-
-        binding.svPageOne.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                binding.tvWhatAreYouLookingFor.visible()
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                binding.tvWhatAreYouLookingFor.gone()
-                return false
-            }
-        })
+        binding.ivAvatarFillPageOne.setImageBitmap(bitmap)
     }
 
     private fun initAdapters() = with(binding) {
@@ -74,7 +68,7 @@ class PageOneFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is PageOneStates.LOADING -> {
                     binding.screenGroupPageOne.gone()
                     binding.pbPageOne.visible()
@@ -85,8 +79,15 @@ class PageOneFragment : Fragment() {
                     flashSaleAdapter.differ.submitList(it.listFlash)
                     latestAdapter.differ.submitList(it.listLatest)
                     brandsAdapter.differ.submitList(it.listBrands)
+                    brandList = it.listBrands
+                    suggestionAdapter = ArrayAdapter<String>(
+                        requireContext(),
+                        android.R.layout.simple_list_item_1,
+                        brandList
+                    )
+                    binding.svPageOne.setAdapter(suggestionAdapter)
 
-                    if(it.listFlash.isEmpty() || it.listLatest.isEmpty() || it.listBrands.isEmpty()) {
+                    if (it.listFlash.isEmpty() || it.listLatest.isEmpty() || it.listBrands.isEmpty()) {
                         binding.screenGroupPageOne.gone()
                         binding.tvNoInternetPageOne.visible()
                     }

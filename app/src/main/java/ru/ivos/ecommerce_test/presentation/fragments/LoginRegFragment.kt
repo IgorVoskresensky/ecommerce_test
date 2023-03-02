@@ -15,10 +15,7 @@ import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentLoginRegBinding
 import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.presentation.viewmodels.UserViewModel
-import ru.ivos.ecommerce_test.utils.gone
-import ru.ivos.ecommerce_test.utils.showLongToast
-import ru.ivos.ecommerce_test.utils.showShortToast
-import ru.ivos.ecommerce_test.utils.visible
+import ru.ivos.ecommerce_test.utils.*
 
 @AndroidEntryPoint
 class LoginRegFragment : Fragment() {
@@ -58,6 +55,12 @@ class LoginRegFragment : Fragment() {
 
         btnSignInOrLogin.setOnClickListener {
             if (etEmail.isVisible) signUp() else login()
+        }
+        btnSingInWithGoogle.setOnClickListener {
+            showShortToast("You're authed with Google")
+        }
+        btnSingInWithApple.setOnClickListener {
+            showShortToast("You're authed with Apple")
         }
     }
 

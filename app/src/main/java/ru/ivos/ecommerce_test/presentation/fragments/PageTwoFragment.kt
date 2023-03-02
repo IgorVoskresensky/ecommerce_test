@@ -131,7 +131,7 @@ class PageTwoFragment : Fragment() {
         plus.setOnClickListener {
             quantity.text = "Quantity: ${++quantityCount}"
             dynamicSum += details.price
-            sum.text = dynamicSum.toString()
+            sum.text = "$${dynamicSum}"
         }
         minus.setOnClickListener {
             if(quantityCount > 0) {
@@ -141,9 +141,9 @@ class PageTwoFragment : Fragment() {
             dynamicSum -= details.price
             if(dynamicSum <= 0 ){
                 dynamicSum = 0.0
-                sum.text = dynamicSum.toString()
+                sum.text = "$${dynamicSum}"
             } else {
-                sum.text = dynamicSum.toString()
+                sum.text = "$${dynamicSum}"
             }
         }
         addToCard.setOnClickListener {
