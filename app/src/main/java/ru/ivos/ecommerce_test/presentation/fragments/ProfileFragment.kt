@@ -36,10 +36,10 @@ class ProfileFragment : Fragment() {
     private lateinit var user: User
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
-        photo.setImageURI(it)
-        val bit = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
-        bitmap = bit
         if (it != null) {
+            photo.setImageURI(it)
+            val bit = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, it)
+            bitmap = bit
             lifecycleScope.launch(Dispatchers.IO) {
                 viewModel.updateUserPhoto(
                     user,
@@ -61,19 +61,8 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
         photo = binding.ivAvatarProfilePage
-
-        val userFullName = viewModel.getCurrentUserName()
-        val userFirstName = userFullName?.substringBefore(" ")
-        viewModel.getUser(userFirstName!!)
-        viewModel.currentUser.observe(viewLifecycleOwner) {
-            user = it!!
-            if (user.bitmap != null) {
-                photo.setImageBitmap((user.bitmap))
-//                Glide.with(photo).load(user.bitmap).circleCrop().into(photo)
-            } else {
-                Glide.with(photo).load(R.drawable.ic_dude_from_flash_item).circleCrop().into(photo)
-            }
-        }
+        getUser()
+        binding.tvNameProfilePage.text = viewModel.getCurrentUserName()
     }
 
     private fun setupClickListeners() {
@@ -88,8 +77,21 @@ class ProfileFragment : Fragment() {
             (activity as MainActivity).setBottomNavInvisible()
             bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_dude_from_flash_item)
         }
+    }
 
-        binding.tvNameProfilePage.text = viewModel.getCurrentUserName()
+    private fun getUser() {
+        val userFullName = viewModel.getCurrentUserName()
+        val userFirstName = userFullName?.substringBefore(" ")
+        viewModel.getUser(userFirstName!!)
+        viewModel.currentUser.observe(viewLifecycleOwner) {
+            user = it!!
+            if (user.bitmap != null) {
+                photo.setImageBitmap((user.bitmap))
+//                Glide.with(photo).load(user.bitmap).circleCrop().into(photo)
+            } else {
+                Glide.with(photo).load(R.drawable.ic_dude_from_flash_item).circleCrop().into(photo)
+            }
+        }
     }
 
     override fun onDestroyView() {

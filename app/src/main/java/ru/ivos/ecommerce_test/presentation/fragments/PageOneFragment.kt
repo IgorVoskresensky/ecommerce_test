@@ -1,5 +1,6 @@
 package ru.ivos.ecommerce_test.presentation.fragments
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentPageOneBinding
 import ru.ivos.ecommerce_test.presentation.MainActivity
 import ru.ivos.ecommerce_test.presentation.adapters.BrandsAdapter
+import ru.ivos.ecommerce_test.presentation.adapters.CategoryAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.FlashSaleAdapter
 import ru.ivos.ecommerce_test.presentation.adapters.LatestAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageOneViewModel
@@ -34,6 +36,7 @@ class PageOneFragment : Fragment() {
     private lateinit var flashSaleAdapter: FlashSaleAdapter
     private lateinit var latestAdapter: LatestAdapter
     private lateinit var brandsAdapter: BrandsAdapter
+    private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var suggestionAdapter: ArrayAdapter<String>
 
     private var brandList = emptyList<String>()
@@ -51,7 +54,7 @@ class PageOneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initAdapters()
         observeViewModel()
-        binding.ivAvatarFillPageOne.setImageBitmap(bitmap)
+        setProfileImage()
     }
 
     private fun initAdapters() = with(binding) {
@@ -64,6 +67,8 @@ class PageOneFragment : Fragment() {
         rvLatestPageOne.adapter = latestAdapter
         brandsAdapter = BrandsAdapter()
         rvBrandsPageOne.adapter = brandsAdapter
+        categoryAdapter = CategoryAdapter()
+        llCategories.adapter = categoryAdapter
     }
 
     private fun observeViewModel() {
@@ -99,6 +104,17 @@ class PageOneFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setProfileImage() {
+        if (bitmap != null) {
+            binding.ivAvatarFillPageOne.setImageBitmap(bitmap)
+        } else binding.ivAvatarFillPageOne.setImageBitmap(
+            BitmapFactory.decodeResource(
+                resources,
+                R.drawable.ic_dude_from_flash_item
+            )
+        )
     }
 
     override fun onDestroyView() {

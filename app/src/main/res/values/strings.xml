@@ -43,4 +43,5 @@
     <string name="you_are_added">Вы добавили товар в избранное</string>
     <string name="something_went_wrong">Something went wrong...:(</string>
     <string name="cart_fragment">Cart fragment</string>
+    <string name="chat_fragment">Chat fragment</string>
 </resources>
