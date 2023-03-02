@@ -59,14 +59,17 @@ class MainActivity : AppCompatActivity() {
     private fun getUser() {
 
         val userFullName = viewModel.getCurrentUserName()
-        val userFirstName = userFullName?.substringBefore(" ")
-        viewModel.getUser(userFirstName!!)
-        viewModel.currentUser.observe(this) {
-            user = it!!
-            if (user.bitmap != null) {
-                bitmap = user.bitmap
+        if(userFullName != null){
+            val userFirstName = userFullName.substringBefore(" ")
+            viewModel.getUser(userFirstName)
+            viewModel.currentUser.observe(this) {
+                user = it!!
+                if (user.bitmap != null) {
+                    bitmap = user.bitmap
+                }
             }
         }
+
     }
 
     fun setBottomNavVisible() {
