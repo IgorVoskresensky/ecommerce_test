@@ -17,7 +17,7 @@ import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
 import ru.ivos.ecommerce_test.domain.repositories.local.UserDao
 import ru.ivos.ecommerce_test.domain.repositories.local.DataStoreRepo
 import ru.ivos.ecommerce_test.domain.repositories.local.FavoritesDao
-import ru.ivos.ecommerce_test.utils.Constants
+import ru.ivos.ecommerce_test.domain.constants.Constants
 import javax.inject.Singleton
 
 @Module

@@ -26,7 +26,7 @@ class LoginRegFragment : Fragment() {
 
     private val viewModel by viewModels<UserViewModel>()
 
-    private var userList = emptyList<User>()
+    private var userList = emptyList<ru.ivos.ecommerce_test.domain.models.local.User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +72,7 @@ class LoginRegFragment : Fragment() {
         ) {
             val userDoesNotExist = userList.any { it.firstName == etInputFirstName.text.toString().trim() }
             if(!userDoesNotExist) {
-                val user = User(
+                val user = ru.ivos.ecommerce_test.domain.models.local.User(
                     firstName = etInputFirstName.text.toString().trim(),
                     lastName = etInputLastName.text.toString().trim(),
                     email = etInputEmail.text.toString().trim()

@@ -1,4 +1,4 @@
-package ru.ivos.ecommerce_test.utils
+package ru.ivos.ecommerce_test.domain.constants
 
 object Constants {
 

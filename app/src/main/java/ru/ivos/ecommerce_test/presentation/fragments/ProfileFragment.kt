@@ -33,7 +33,7 @@ class ProfileFragment : Fragment() {
     private val viewModel by viewModels<UserViewModel>()
 
     private lateinit var photo: CircleImageView
-    private lateinit var user: User
+    private lateinit var user: ru.ivos.ecommerce_test.domain.models.local.User
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {

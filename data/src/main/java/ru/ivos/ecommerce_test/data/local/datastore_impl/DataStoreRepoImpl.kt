@@ -8,8 +8,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
+import ru.ivos.ecommerce_test.domain.constants.Constants.DATASTORE_NAME
 import ru.ivos.ecommerce_test.domain.repositories.local.DataStoreRepo
-import ru.ivos.ecommerce_test.utils.Constants.DATASTORE_NAME
 
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = DATASTORE_NAME)
 
