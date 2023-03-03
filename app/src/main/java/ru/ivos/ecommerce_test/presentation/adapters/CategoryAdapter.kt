@@ -8,6 +8,12 @@ import ru.ivos.ecommerce_test.databinding.ItemCategoryBinding
 
 class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
+    /**
+     * В задании указано, что список категорий должен скроллиться и что все категории
+     * можно взять из макета.
+     * В макете 6 категорий, все 6 из которых помещаются на экран как в вёрстке,
+     * так и в самом макете, поэтому я просто повторил их все по два раза
+     */
     private val titles = listOf(
         "Phones", "Headphones", "Games", "Cars", "Furniture", "Kids",
         "Phones", "Headphones", "Games", "Cars", "Furniture", "Kids"

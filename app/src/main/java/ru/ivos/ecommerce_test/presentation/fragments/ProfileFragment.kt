@@ -33,7 +33,7 @@ class ProfileFragment : Fragment() {
     private val viewModel by viewModels<UserViewModel>()
 
     private lateinit var photo: CircleImageView
-    private lateinit var user: ru.ivos.ecommerce_test.domain.models.local.User
+    private lateinit var user: User
 
     private val contract = registerForActivityResult(ActivityResultContracts.GetContent()) {
         if (it != null) {
@@ -71,11 +71,21 @@ class ProfileFragment : Fragment() {
         }
         binding.llLogOutProfilePage.setOnClickListener {
             viewModel.setIsUserSignedIn(false)
+            /**
+             * Если удалять данные пользователя при вызоде из учетной записи,
+             * как это написано в ТЗ сделать, то получится, что в БД всегда будет
+             * только один пользователь, который залогинен в данный момент
+             * и в функции Login не будет никакого смысла. Поэтому, чтоб удалить
+             * при выходе хоть что-то, удаляю фотографию пользователя :)
+             */
 //            viewModel.deleteUser(user.id)
             viewModel.updateUserPhoto(user, null)
             findNavController().navigate(R.id.action_profileFragment_to_loginRegFragment)
             (activity as MainActivity).setBottomNavInvisible()
             bitmap = BitmapFactory.decodeResource(resources, R.drawable.profile)
+        }
+        binding.btnBackProfilePage.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_pageOneFragment)
         }
     }
 
@@ -86,6 +96,10 @@ class ProfileFragment : Fragment() {
         viewModel.currentUser.observe(viewLifecycleOwner) {
             user = it!!
             if (user.bitmap != null) {
+                /**
+                 * Конкретно в данном случае setImageBitmap работает стабильнее,
+                 * поэтому использую его, а не Glide
+                 */
                 photo.setImageBitmap((user.bitmap))
 //                Glide.with(photo).load(user.bitmap).circleCrop().into(photo)
             } else {

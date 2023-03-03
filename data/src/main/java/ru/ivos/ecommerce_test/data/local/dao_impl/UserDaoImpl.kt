@@ -2,7 +2,6 @@ package ru.ivos.ecommerce_test.data.local.dao_impl
 
 import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.domain.repositories.local.UserDao
-import ru.ivos.ecommerce_test.domain.models.local.Favorite
 import javax.inject.Inject
 
 class UserDaoImpl @Inject constructor(

@@ -45,4 +45,14 @@
     <string name="cart_fragment">Cart fragment</string>
     <string name="chat_fragment">Chat fragment</string>
     <string name="effective_mobile_test_app">Effective mobile test app</string>
+    <string name="quantity">Quantity:</string>
+    <string name="reviews">reviews</string>
+    <string name="authed_with_Google">You\'re authed with Google</string>
+    <string name="authed_with_Apple">You\'re authed with Apple</string>
+    <string name="already_exist">User already exist</string>
+    <string name="doesnt_exist">User doesn\'t exist</string>
+    <string name="invalid_fields">Invalid fields</string>
+    <string name="invalid_email">Invalid email</string>
+    <string name="empty_name">Name must not be empty</string>
+    <string name="empty_email">Email must not be empty</string>
 </resources>

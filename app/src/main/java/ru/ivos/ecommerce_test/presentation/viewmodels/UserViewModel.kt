@@ -8,10 +8,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import ru.ivos.ecommerce_test.domain.models.local.User
-import ru.ivos.ecommerce_test.domain.usecases.user_usecases.*
 import ru.ivos.ecommerce_test.domain.constants.Constants.CURRENT_USER_NAME
 import ru.ivos.ecommerce_test.domain.constants.Constants.IS_USER_SIGNED_IN_KEY
+import ru.ivos.ecommerce_test.domain.models.local.User
+import ru.ivos.ecommerce_test.domain.usecases.user_usecases.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,11 +48,9 @@ class UserViewModel @Inject constructor(
 
     fun deleteUser(id: Int) = viewModelScope.launch {
         deleteUserUseCase.invoke(id)
-//        _currentUser.value = null
     }
 
     fun updateUserPhoto(oldUser: User, bitmap: Bitmap?) = viewModelScope.launch {
-//        val oldUser = _currentUser.value!!
         val newUser = User(
             id = oldUser.id,
             firstName = oldUser.firstName,

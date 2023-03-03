@@ -1,10 +1,10 @@
 package ru.ivos.ecommerce_test.data.remote
 
-import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
 import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.domain.models.remote.FlashSaleList
 import ru.ivos.ecommerce_test.domain.models.remote.LatestList
 import ru.ivos.ecommerce_test.domain.models.remote.Words
+import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
 import javax.inject.Inject
 
 class ApiRepoImpl @Inject constructor(

@@ -2,12 +2,12 @@ package ru.ivos.ecommerce_test.presentation.fragments
 
 import android.os.Bundle
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +15,10 @@ import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentLoginRegBinding
 import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.presentation.viewmodels.UserViewModel
-import ru.ivos.ecommerce_test.utils.*
+import ru.ivos.ecommerce_test.utils.gone
+import ru.ivos.ecommerce_test.utils.showLongToast
+import ru.ivos.ecommerce_test.utils.showShortToast
+import ru.ivos.ecommerce_test.utils.visible
 
 @AndroidEntryPoint
 class LoginRegFragment : Fragment() {
@@ -26,7 +29,7 @@ class LoginRegFragment : Fragment() {
 
     private val viewModel by viewModels<UserViewModel>()
 
-    private var userList = emptyList<ru.ivos.ecommerce_test.domain.models.local.User>()
+    private var userList = emptyList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +60,10 @@ class LoginRegFragment : Fragment() {
             if (etEmail.isVisible) signUp() else login()
         }
         btnSingInWithGoogle.setOnClickListener {
-            showShortToast("You're authed with Google")
+            showShortToast(requireContext().getString(R.string.authed_with_Google))
         }
         btnSingInWithApple.setOnClickListener {
-            showShortToast("You're authed with Apple")
+            showShortToast(requireContext().getString(R.string.authed_with_Apple))
         }
     }
 
@@ -72,7 +75,7 @@ class LoginRegFragment : Fragment() {
         ) {
             val userDoesNotExist = userList.any { it.firstName == etInputFirstName.text.toString().trim() }
             if(!userDoesNotExist) {
-                val user = ru.ivos.ecommerce_test.domain.models.local.User(
+                val user = User(
                     firstName = etInputFirstName.text.toString().trim(),
                     lastName = etInputLastName.text.toString().trim(),
                     email = etInputEmail.text.toString().trim()
@@ -82,12 +85,12 @@ class LoginRegFragment : Fragment() {
                 viewModel.setCurrentUserName("${user.firstName} ${user.lastName}")
                 findNavController().navigate(R.id.action_loginRegFragment_to_pageOneFragment)
             } else {
-                showLongToast("User already exist")
+                showLongToast(requireContext().getString(R.string.already_exist))
                 showLoginElements()
             }
         } else {
             showErrors()
-            showLongToast("Invalid fields")
+            showLongToast(requireContext().getString(R.string.invalid_fields))
         }
     }
 
@@ -102,36 +105,36 @@ class LoginRegFragment : Fragment() {
                 viewModel.setIsUserSignedIn(true)
                 findNavController().navigate(R.id.action_loginRegFragment_to_pageOneFragment)
             } else {
-                showLongToast("User doesn't exist")
+                showLongToast(requireContext().getString(R.string.doesnt_exist))
                 showSignInElements()
             }
         } else {
             showErrors()
-            showLongToast("Invalid fields")
+            showLongToast(requireContext().getString(R.string.invalid_fields))
         }
     }
 
     private fun setupEditTexts() = with(binding) {
         etInputFirstName.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
-                etFirstName.error = "Name must not be empty"
-                showShortToast("Name must not be empty")
+                etFirstName.error = requireContext().getString(R.string.empty_name)
+                showShortToast(requireContext().getString(R.string.empty_name))
             } else {
                 etFirstName.error = null
             }
         }
         etInputLastName.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
-                etLastName.error = "Name must not be empty"
-                showShortToast("Name must not be empty")
+                etLastName.error = requireContext().getString(R.string.empty_name)
+                showShortToast(requireContext().getString(R.string.empty_name))
             } else {
                 etLastName.error = null
             }
         }
         etInputEmail.doOnTextChanged { text, start, before, count ->
             if (text!!.isEmpty()) {
-                etEmail.error = "Email must not be empty"
-                showShortToast("Email must not be empty")
+                etEmail.error = requireContext().getString(R.string.empty_email)
+                showShortToast(requireContext().getString(R.string.empty_email))
             } else {
                 etEmail.error = null
             }
@@ -139,8 +142,8 @@ class LoginRegFragment : Fragment() {
         etInputEmail.setOnFocusChangeListener { view, focus ->
             if (!focus) {
                 if (!checkEmailValid()) {
-                    etEmail.error = "Invalid email"
-                    showShortToast("Invalid email")
+                    etEmail.error = requireContext().getString(R.string.invalid_email)
+                    showShortToast(requireContext().getString(R.string.invalid_email))
                 } else {
                     etEmail.error = null
                 }
@@ -181,9 +184,9 @@ class LoginRegFragment : Fragment() {
     }
 
     private fun showErrors() = with(binding) {
-        if(etInputFirstName.text!!.isEmpty()) etFirstName.error = "Name must not be empty"
-        if(etInputLastName.text!!.isEmpty()) etLastName.error = "Name must not be empty"
-        if(etInputEmail.text!!.isEmpty()) etEmail.error = "Email must not be empty"
-        if(checkEmailValid()) etEmail.error = "Invalid email"
+        if(etInputFirstName.text!!.isEmpty()) etFirstName.error = requireContext().getString(R.string.empty_name)
+        if(etInputLastName.text!!.isEmpty()) etLastName.error = requireContext().getString(R.string.empty_name)
+        if(etInputEmail.text!!.isEmpty()) etEmail.error = requireContext().getString(R.string.empty_email)
+        if(checkEmailValid()) etEmail.error = requireContext().getString(R.string.invalid_email)
     }
 }

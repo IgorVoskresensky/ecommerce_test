@@ -9,18 +9,20 @@ import ru.ivos.ecommerce_test.databinding.ItemBrandsBinding
 
 class BrandsAdapter : RecyclerView.Adapter<BrandsAdapter.BrandsViewHolder>() {
 
+    /**
+     * В задании указано, что внизу страницы должен находиться список брэндов.
+     * При этом, в отличие от списка недавних и списка распродаж, к брендам
+     * не предоставлен API. Поэтому я взял API, предоставленный для
+     * подсказок поля поиска (может, так и было задумано, но картинок для
+     * списка брендов нет) :)
+     */
+
     inner class BrandsViewHolder(private val binding: ItemBrandsBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(word: String){
             binding.apply {
                 tvNameBrandsItem.text = word
-
-                root.setOnClickListener {
-                    onItemClickListener?.let {
-                        it(word)
-                    }
-                }
             }
         }
     }

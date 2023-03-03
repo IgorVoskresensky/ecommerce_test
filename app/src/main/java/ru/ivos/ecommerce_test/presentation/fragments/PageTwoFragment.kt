@@ -23,7 +23,10 @@ import ru.ivos.ecommerce_test.domain.constants.Constants
 import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
-import ru.ivos.ecommerce_test.utils.*
+import ru.ivos.ecommerce_test.utils.PageTwoStates
+import ru.ivos.ecommerce_test.utils.gone
+import ru.ivos.ecommerce_test.utils.mapDetailsToFavorite
+import ru.ivos.ecommerce_test.utils.visible
 
 @AndroidEntryPoint
 class PageTwoFragment : Fragment() {
@@ -38,23 +41,23 @@ class PageTwoFragment : Fragment() {
     private lateinit var details: Details
 
     private lateinit var adapter: DetailsAdapter
-    private lateinit var image : ImageView
-    private lateinit var name : TextView
-    private lateinit var price : TextView
-    private lateinit var description : TextView
-    private lateinit var rating : TextView
-    private lateinit var reviews : TextView
-    private lateinit var quantity : TextView
-    private lateinit var sum : TextView
-    private lateinit var colorOne : MaterialButton
-    private lateinit var colorTwo : MaterialButton
-    private lateinit var colorThree : MaterialButton
+    private lateinit var image: ImageView
+    private lateinit var name: TextView
+    private lateinit var price: TextView
+    private lateinit var description: TextView
+    private lateinit var rating: TextView
+    private lateinit var reviews: TextView
+    private lateinit var quantity: TextView
+    private lateinit var sum: TextView
+    private lateinit var colorOne: MaterialButton
+    private lateinit var colorTwo: MaterialButton
+    private lateinit var colorThree: MaterialButton
     private lateinit var share: ImageView
     private lateinit var addToFavorite: ImageView
     private lateinit var removeFavorite: ImageView
-    private lateinit var plus : AppCompatButton
-    private lateinit var minus : AppCompatButton
-    private lateinit var addToCard : AppCompatButton
+    private lateinit var plus: AppCompatButton
+    private lateinit var minus: AppCompatButton
+    private lateinit var addToCard: AppCompatButton
 
     private var dynamicSum = 0.0
     private var quantityCount = 0
@@ -101,7 +104,7 @@ class PageTwoFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is PageTwoStates.LOADING -> {
                     binding.screenGroupPageTwo.gone()
                     binding.pbPageTwo.visible()
@@ -116,7 +119,8 @@ class PageTwoFragment : Fragment() {
                     price.text = "$${details.price}"
                     description.text = details.description
                     rating.text = details.rating.toString()
-                    reviews.text = "(${details.numberOfReviews} reviews)"
+                    reviews.text =
+                        "(${details.numberOfReviews} ${requireContext().getString(R.string.reviews)})"
                     colorOne.background.setTint(Color.parseColor(details.colors[0]))
                     colorTwo.background.setTint(Color.parseColor(details.colors[1]))
                     colorThree.background.setTint(Color.parseColor(details.colors[2]))
@@ -134,23 +138,23 @@ class PageTwoFragment : Fragment() {
         binding.btnBackPageTwo.setOnClickListener {
             findNavController().navigate(R.id.action_pageTwoFragment_to_pageOneFragment)
         }
-        binding.crvPageTwo.setItemSelectListener(object : CarouselLayoutManager.OnSelected{
+        binding.crvPageTwo.setItemSelectListener(object : CarouselLayoutManager.OnSelected {
             override fun onItemSelected(position: Int) {
                 Glide.with(image).load(adapter.differ.currentList[position]).into(image)
             }
         })
         plus.setOnClickListener {
-            quantity.text = "Quantity: ${++quantityCount}"
+            quantity.text = "${requireContext().getString(R.string.quantity)} ${++quantityCount}"
             dynamicSum += details.price
             sum.text = "$${dynamicSum}"
         }
         minus.setOnClickListener {
-            if(quantityCount > 0) {
+            if (quantityCount > 0) {
                 --quantityCount
             }
-            quantity.text = "Quantity: ${quantityCount}"
+            quantity.text = "${requireContext().getString(R.string.quantity)} ${quantityCount}"
             dynamicSum -= details.price
-            if(dynamicSum <= 0 ){
+            if (dynamicSum <= 0) {
                 dynamicSum = 0.0
                 sum.text = "$${dynamicSum}"
             } else {

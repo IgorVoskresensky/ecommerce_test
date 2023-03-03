@@ -5,9 +5,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import ru.ivos.ecommerce_test.domain.constants.Constants.MY_LOG_TAG
 import ru.ivos.ecommerce_test.domain.models.local.Favorite
 import ru.ivos.ecommerce_test.domain.models.remote.Details
-import ru.ivos.ecommerce_test.domain.constants.Constants.MY_LOG_TAG
 
 var bitmap: Bitmap? = null
 

@@ -6,14 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.domain.models.remote.FlashSale
 import ru.ivos.ecommerce_test.domain.models.remote.Latest
 import ru.ivos.ecommerce_test.domain.usecases.api_usecases.GetBrandsUseCase
 import ru.ivos.ecommerce_test.domain.usecases.api_usecases.GetFlashSaleUseCase
 import ru.ivos.ecommerce_test.domain.usecases.api_usecases.GetLatestUseCase
-import ru.ivos.ecommerce_test.domain.usecases.user_usecases.GetCurrentUserNameUseCase
-import ru.ivos.ecommerce_test.domain.usecases.user_usecases.GetUserUseCase
 import ru.ivos.ecommerce_test.utils.PageOneStates
 import javax.inject.Inject
 

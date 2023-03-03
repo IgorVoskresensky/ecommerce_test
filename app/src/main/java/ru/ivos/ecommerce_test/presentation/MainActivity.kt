@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,11 +14,9 @@ import kotlinx.coroutines.launch
 import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.ActivityMainBinding
 import ru.ivos.ecommerce_test.domain.models.local.User
-import ru.ivos.ecommerce_test.presentation.fragments.LoginRegFragment
 import ru.ivos.ecommerce_test.presentation.viewmodels.UserViewModel
 import ru.ivos.ecommerce_test.utils.bitmap
 import ru.ivos.ecommerce_test.utils.gone
-import ru.ivos.ecommerce_test.utils.showLog
 import ru.ivos.ecommerce_test.utils.visible
 
 @AndroidEntryPoint

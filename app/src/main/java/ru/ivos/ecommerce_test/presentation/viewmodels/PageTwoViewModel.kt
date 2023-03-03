@@ -6,11 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import ru.ivos.ecommerce_test.domain.models.local.Favorite
 import ru.ivos.ecommerce_test.domain.usecases.api_usecases.GetDetailsUseCase
 import ru.ivos.ecommerce_test.domain.usecases.favorite_usecases.DeleteFavoriteUseCase
 import ru.ivos.ecommerce_test.domain.usecases.favorite_usecases.InsertFavoriteUseCase
-import ru.ivos.ecommerce_test.utils.PageOneStates
 import ru.ivos.ecommerce_test.utils.PageTwoStates
 import javax.inject.Inject
 

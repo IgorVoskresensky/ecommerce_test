@@ -14,28 +14,22 @@ class LatestAdapter : RecyclerView.Adapter<LatestAdapter.LatestViewHolder>() {
     inner class LatestViewHolder(private val binding: ItemLatestBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(latest: ru.ivos.ecommerce_test.domain.models.remote.Latest){
+        fun bind(latest: Latest){
             binding.apply {
                 Glide.with(itemView).load(latest.imageUrl).into(ivItemLatest)
                 tvCategoryLatestItem.text = latest.category
                 tvNameLatestItem.text = latest.name
                 tvPriceLatestItem.text = "$${latest.price}"
-
-                root.setOnClickListener {
-                    onItemClickListener?.let {
-                        it(latest)
-                    }
-                }
             }
         }
     }
 
-    private val diffCallback = object : DiffUtil.ItemCallback<ru.ivos.ecommerce_test.domain.models.remote.Latest>(){
-        override fun areItemsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.Latest, newItem: ru.ivos.ecommerce_test.domain.models.remote.Latest): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<Latest>(){
+        override fun areItemsTheSame(oldItem: Latest, newItem: Latest): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.Latest, newItem: ru.ivos.ecommerce_test.domain.models.remote.Latest): Boolean {
+        override fun areContentsTheSame(oldItem: Latest, newItem: Latest): Boolean {
             return oldItem == newItem
         }
     }
@@ -55,11 +49,5 @@ class LatestAdapter : RecyclerView.Adapter<LatestAdapter.LatestViewHolder>() {
 
     override fun getItemCount(): Int {
         return differ.currentList.size
-    }
-
-    private var onItemClickListener: ((ru.ivos.ecommerce_test.domain.models.remote.Latest) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (ru.ivos.ecommerce_test.domain.models.remote.Latest) -> Unit) {
-        onItemClickListener = listener
     }
 }
