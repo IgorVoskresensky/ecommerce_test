@@ -44,4 +44,5 @@
     <string name="something_went_wrong">Something went wrong...:(</string>
     <string name="cart_fragment">Cart fragment</string>
     <string name="chat_fragment">Chat fragment</string>
+    <string name="effective_mobile_test_app">Effective mobile test app</string>
 </resources>

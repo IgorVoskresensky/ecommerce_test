@@ -1,6 +1,7 @@
 package ru.ivos.ecommerce_test.presentation.fragments
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,11 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentPageTwoBinding
 import ru.ivos.ecommerce_test.domain.constants.Constants
+import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
 import ru.ivos.ecommerce_test.utils.*
@@ -32,7 +35,7 @@ class PageTwoFragment : Fragment() {
 
     private val viewModel by viewModels<PageTwoViewModel>()
 
-    private lateinit var details: ru.ivos.ecommerce_test.domain.models.remote.Details
+    private lateinit var details: Details
 
     private lateinit var adapter: DetailsAdapter
     private lateinit var image : ImageView
@@ -43,9 +46,9 @@ class PageTwoFragment : Fragment() {
     private lateinit var reviews : TextView
     private lateinit var quantity : TextView
     private lateinit var sum : TextView
-    private lateinit var colorOne : ImageView
-    private lateinit var colorTwo : ImageView
-    private lateinit var colorThree : ImageView
+    private lateinit var colorOne : MaterialButton
+    private lateinit var colorTwo : MaterialButton
+    private lateinit var colorThree : MaterialButton
     private lateinit var share: ImageView
     private lateinit var addToFavorite: ImageView
     private lateinit var removeFavorite: ImageView
@@ -55,6 +58,8 @@ class PageTwoFragment : Fragment() {
 
     private var dynamicSum = 0.0
     private var quantityCount = 0
+
+    private lateinit var colorState: ColorStateList
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,6 +74,7 @@ class PageTwoFragment : Fragment() {
         initViews()
         observeViewModel()
         setupClickListeners()
+        setupColorState()
     }
 
     private fun initViews() = with(binding) {
@@ -107,7 +113,7 @@ class PageTwoFragment : Fragment() {
                     Glide.with(image).load(details.imageUrls.first()).into(image)
                     adapter.differ.submitList(it.details.imageUrls)
                     name.text = details.name
-                    price.text = details.price.toString()
+                    price.text = "$${details.price}"
                     description.text = details.description
                     rating.text = details.rating.toString()
                     reviews.text = "(${details.numberOfReviews} reviews)"
@@ -156,8 +162,7 @@ class PageTwoFragment : Fragment() {
         }
         share.setOnClickListener {
             val shareLink = "${Constants.BASE_URL}f7f99d04-4971-45d5-92e0-70333383c239"
-            val intent = Intent()
-            intent.apply {
+            val intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, shareLink)
                 type = "text/plain"
@@ -174,6 +179,34 @@ class PageTwoFragment : Fragment() {
             removeFavorite.gone()
             addToFavorite.visible()
         }
+        colorOne.setOnClickListener {
+            colorOne.strokeColor = colorState
+            colorTwo.isChecked = false
+            colorThree.isChecked = false
+        }
+        colorTwo.setOnClickListener {
+            colorTwo.strokeColor = colorState
+            colorOne.isChecked = false
+            colorThree.isChecked = false
+        }
+        colorThree.setOnClickListener {
+            colorThree.strokeColor = colorState
+            colorTwo.isChecked = false
+            colorOne.isChecked = false
+        }
+    }
+
+    private fun setupColorState() {
+        colorState = ColorStateList(
+            arrayOf(
+                intArrayOf(-android.R.attr.state_checked),
+                intArrayOf(android.R.attr.state_checked),
+            ),
+            intArrayOf(
+                android.R.color.transparent,
+                Color.parseColor("#ADADAD")
+            )
+        )
     }
 
     override fun onDestroyView() {
