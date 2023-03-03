@@ -14,7 +14,7 @@ class LatestAdapter : RecyclerView.Adapter<LatestAdapter.LatestViewHolder>() {
     inner class LatestViewHolder(private val binding: ItemLatestBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(latest: Latest){
+        fun bind(latest: ru.ivos.ecommerce_test.domain.models.remote.Latest){
             binding.apply {
                 Glide.with(itemView).load(latest.imageUrl).into(ivItemLatest)
                 tvCategoryLatestItem.text = latest.category
@@ -30,12 +30,12 @@ class LatestAdapter : RecyclerView.Adapter<LatestAdapter.LatestViewHolder>() {
         }
     }
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Latest>(){
-        override fun areItemsTheSame(oldItem: Latest, newItem: Latest): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<ru.ivos.ecommerce_test.domain.models.remote.Latest>(){
+        override fun areItemsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.Latest, newItem: ru.ivos.ecommerce_test.domain.models.remote.Latest): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: Latest, newItem: Latest): Boolean {
+        override fun areContentsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.Latest, newItem: ru.ivos.ecommerce_test.domain.models.remote.Latest): Boolean {
             return oldItem == newItem
         }
     }
@@ -57,9 +57,9 @@ class LatestAdapter : RecyclerView.Adapter<LatestAdapter.LatestViewHolder>() {
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((Latest) -> Unit)? = null
+    private var onItemClickListener: ((ru.ivos.ecommerce_test.domain.models.remote.Latest) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (Latest) -> Unit) {
+    fun setOnItemClickListener(listener: (ru.ivos.ecommerce_test.domain.models.remote.Latest) -> Unit) {
         onItemClickListener = listener
     }
 }

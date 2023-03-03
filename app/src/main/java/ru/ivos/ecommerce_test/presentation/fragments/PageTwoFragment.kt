@@ -17,7 +17,7 @@ import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import ru.ivos.ecommerce_test.R
 import ru.ivos.ecommerce_test.databinding.FragmentPageTwoBinding
-import ru.ivos.ecommerce_test.domain.models.remote.Details
+import ru.ivos.ecommerce_test.domain.constants.Constants
 import ru.ivos.ecommerce_test.presentation.adapters.DetailsAdapter
 import ru.ivos.ecommerce_test.presentation.viewmodels.PageTwoViewModel
 import ru.ivos.ecommerce_test.utils.*
@@ -32,7 +32,7 @@ class PageTwoFragment : Fragment() {
 
     private val viewModel by viewModels<PageTwoViewModel>()
 
-    private lateinit var details: Details
+    private lateinit var details: ru.ivos.ecommerce_test.domain.models.remote.Details
 
     private lateinit var adapter: DetailsAdapter
     private lateinit var image : ImageView

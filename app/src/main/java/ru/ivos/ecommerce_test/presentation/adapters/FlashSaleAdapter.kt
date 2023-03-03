@@ -14,7 +14,7 @@ class FlashSaleAdapter : RecyclerView.Adapter<FlashSaleAdapter.FlashSaleViewHold
     inner class FlashSaleViewHolder(private val binding: ItemFlashSaleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(flashSale: FlashSale){
+        fun bind(flashSale: ru.ivos.ecommerce_test.domain.models.remote.FlashSale){
             binding.apply {
                 Glide.with(itemView).load(flashSale.imageUrl).into(ivItemFlashSale)
                 tvCategoryFlashSaleItem.text = flashSale.category
@@ -31,12 +31,12 @@ class FlashSaleAdapter : RecyclerView.Adapter<FlashSaleAdapter.FlashSaleViewHold
         }
     }
 
-    private val diffCallback = object : DiffUtil.ItemCallback<FlashSale>(){
-        override fun areItemsTheSame(oldItem: FlashSale, newItem: FlashSale): Boolean {
+    private val diffCallback = object : DiffUtil.ItemCallback<ru.ivos.ecommerce_test.domain.models.remote.FlashSale>(){
+        override fun areItemsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.FlashSale, newItem: ru.ivos.ecommerce_test.domain.models.remote.FlashSale): Boolean {
             return oldItem.name == newItem.name
         }
 
-        override fun areContentsTheSame(oldItem: FlashSale, newItem: FlashSale): Boolean {
+        override fun areContentsTheSame(oldItem: ru.ivos.ecommerce_test.domain.models.remote.FlashSale, newItem: ru.ivos.ecommerce_test.domain.models.remote.FlashSale): Boolean {
             return oldItem == newItem
         }
     }
@@ -58,9 +58,9 @@ class FlashSaleAdapter : RecyclerView.Adapter<FlashSaleAdapter.FlashSaleViewHold
         return differ.currentList.size
     }
 
-    private var onItemClickListener: ((FlashSale) -> Unit)? = null
+    private var onItemClickListener: ((ru.ivos.ecommerce_test.domain.models.remote.FlashSale) -> Unit)? = null
 
-    fun setOnItemClickListener(listener: (FlashSale) -> Unit) {
+    fun setOnItemClickListener(listener: (ru.ivos.ecommerce_test.domain.models.remote.FlashSale) -> Unit) {
         onItemClickListener = listener
     }
 }

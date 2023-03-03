@@ -37,7 +37,7 @@ class PageTwoViewModel @Inject constructor(
             .onFailure { _state.value = PageTwoStates.FAILURE("Error") }
     }
 
-    fun insertFavorite(favorite: Favorite) = viewModelScope.launch {
+    fun insertFavorite(favorite: ru.ivos.ecommerce_test.domain.models.local.Favorite) = viewModelScope.launch {
         insertFavoriteUseCase.invoke(favorite)
     }
 

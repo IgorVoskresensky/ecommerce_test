@@ -1,7 +1,6 @@
 package ru.ivos.ecommerce_test.presentation.viewmodels
 
 import android.graphics.Bitmap
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,8 +10,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import ru.ivos.ecommerce_test.domain.models.local.User
 import ru.ivos.ecommerce_test.domain.usecases.user_usecases.*
-import ru.ivos.ecommerce_test.utils.Constants.CURRENT_USER_NAME
-import ru.ivos.ecommerce_test.utils.Constants.IS_USER_SIGNED_IN_KEY
+import ru.ivos.ecommerce_test.domain.constants.Constants.CURRENT_USER_NAME
+import ru.ivos.ecommerce_test.domain.constants.Constants.IS_USER_SIGNED_IN_KEY
 import javax.inject.Inject
 
 @HiltViewModel

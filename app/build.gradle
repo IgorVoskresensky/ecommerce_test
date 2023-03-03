@@ -50,6 +50,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
     //navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
@@ -79,18 +82,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-compiler:2.42"
 
-    //paging
-    implementation("androidx.paging:paging-runtime:3.1.1")
-
-    //datastore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-
     //carousel recyclerview
     implementation 'com.github.sparrow007:carouselrecyclerview:1.2.5'
 
     //circle image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-
-    //gson
-    implementation 'com.google.code.gson:gson:2.9.0'
 }
