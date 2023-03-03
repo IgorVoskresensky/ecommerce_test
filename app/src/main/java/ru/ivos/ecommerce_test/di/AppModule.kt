@@ -12,10 +12,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.ivos.ecommerce_test.data.local.AppDatabase
-import ru.ivos.ecommerce_test.data.local.DataStoreRepoImpl
-import ru.ivos.ecommerce_test.domain.ApiRepo
-import ru.ivos.ecommerce_test.domain.AppDao
-import ru.ivos.ecommerce_test.domain.DataStoreRepo
+import ru.ivos.ecommerce_test.data.local.datastore_impl.DataStoreRepoImpl
+import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
+import ru.ivos.ecommerce_test.domain.repositories.local.UserDao
+import ru.ivos.ecommerce_test.domain.repositories.local.DataStoreRepo
+import ru.ivos.ecommerce_test.domain.repositories.local.FavoritesDao
 import ru.ivos.ecommerce_test.utils.Constants
 import javax.inject.Singleton
 
@@ -53,8 +54,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun getDao(appDatabase: AppDatabase): AppDao {
-        return appDatabase.getDao()
+    fun getUserDao(appDatabase: AppDatabase): UserDao {
+        return appDatabase.getUserDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getFavoritesDao(appDatabase: AppDatabase): FavoritesDao {
+        return appDatabase.getFavoritesDao()
     }
 
     @Provides

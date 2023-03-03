@@ -112,7 +112,7 @@ class PageOneFragment : Fragment() {
         } else binding.ivAvatarFillPageOne.setImageBitmap(
             BitmapFactory.decodeResource(
                 resources,
-                R.drawable.ic_dude_from_flash_item
+                R.drawable.profile
             )
         )
     }

@@ -1,6 +1,6 @@
 package ru.ivos.ecommerce_test.data.remote
 
-import ru.ivos.ecommerce_test.domain.ApiRepo
+import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
 import ru.ivos.ecommerce_test.domain.models.remote.Details
 import ru.ivos.ecommerce_test.domain.models.remote.FlashSaleList
 import ru.ivos.ecommerce_test.domain.models.remote.LatestList

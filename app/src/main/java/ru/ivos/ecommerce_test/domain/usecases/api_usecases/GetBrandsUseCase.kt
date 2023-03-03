@@ -1,6 +1,6 @@
 package ru.ivos.ecommerce_test.domain.usecases.api_usecases
 
-import ru.ivos.ecommerce_test.domain.ApiRepo
+import ru.ivos.ecommerce_test.domain.repositories.remote.ApiRepo
 import javax.inject.Inject
 
 class GetBrandsUseCase @Inject constructor(

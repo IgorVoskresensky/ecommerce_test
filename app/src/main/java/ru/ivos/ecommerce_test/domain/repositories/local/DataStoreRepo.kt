@@ -1,4 +1,4 @@
-package ru.ivos.ecommerce_test.domain
+package ru.ivos.ecommerce_test.domain.repositories.local
 
 interface DataStoreRepo {
 

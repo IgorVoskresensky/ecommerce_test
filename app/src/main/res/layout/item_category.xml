@@ -38,7 +38,7 @@
             android:id="@+id/tvItemCategory"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:text="@string/phone"
             android:textSize="11sp"
             android:gravity="center"

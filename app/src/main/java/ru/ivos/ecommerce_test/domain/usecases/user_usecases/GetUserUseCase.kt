@@ -1,11 +1,11 @@
 package ru.ivos.ecommerce_test.domain.usecases.user_usecases
 
-import ru.ivos.ecommerce_test.domain.AppDao
+import ru.ivos.ecommerce_test.domain.repositories.local.UserDao
 import javax.inject.Inject
 
 class GetUserUseCase @Inject constructor(
-    private val appDao: AppDao
+    private val userDao: UserDao
 ) {
 
-    suspend operator fun invoke(name: String) = appDao.getUser(name)
+    suspend operator fun invoke(name: String) = userDao.getUser(name)
 }

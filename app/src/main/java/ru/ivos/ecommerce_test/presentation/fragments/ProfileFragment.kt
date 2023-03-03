@@ -75,7 +75,7 @@ class ProfileFragment : Fragment() {
             viewModel.updateUserPhoto(user, null)
             findNavController().navigate(R.id.action_profileFragment_to_loginRegFragment)
             (activity as MainActivity).setBottomNavInvisible()
-            bitmap = BitmapFactory.decodeResource(resources, R.drawable.ic_dude_from_flash_item)
+            bitmap = BitmapFactory.decodeResource(resources, R.drawable.profile)
         }
     }
 
@@ -89,7 +89,7 @@ class ProfileFragment : Fragment() {
                 photo.setImageBitmap((user.bitmap))
 //                Glide.with(photo).load(user.bitmap).circleCrop().into(photo)
             } else {
-                Glide.with(photo).load(R.drawable.ic_dude_from_flash_item).circleCrop().into(photo)
+                Glide.with(photo).load(R.drawable.profile).circleCrop().into(photo)
             }
         }
     }

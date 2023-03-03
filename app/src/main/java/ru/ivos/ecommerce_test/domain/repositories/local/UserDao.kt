@@ -1,15 +1,13 @@
-package ru.ivos.ecommerce_test.domain
+package ru.ivos.ecommerce_test.domain.repositories.local
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.ivos.ecommerce_test.domain.models.local.Favorite
 import ru.ivos.ecommerce_test.domain.models.local.User
 
 @Dao
-interface AppDao {
+interface UserDao {
 
     @Query("SELECT * FROM users ORDER BY id")
     suspend fun getUsers() : List<User>
@@ -23,9 +21,4 @@ interface AppDao {
     @Query("DELETE FROM users WHERE id = :id")
     suspend fun deleteUser(id: Int)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFavorite(favorite: Favorite)
-
-    @Query("DELETE FROM favorites WHERE name = :name")
-    suspend fun deleteFavorite(name: String)
 }

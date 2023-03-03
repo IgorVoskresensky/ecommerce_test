@@ -1,6 +1,6 @@
 package ru.ivos.ecommerce_test.domain.usecases.user_usecases
 
-import ru.ivos.ecommerce_test.domain.DataStoreRepo
+import ru.ivos.ecommerce_test.domain.repositories.local.DataStoreRepo
 import javax.inject.Inject
 
 class SetIsUserSignedInUseCase @Inject constructor(

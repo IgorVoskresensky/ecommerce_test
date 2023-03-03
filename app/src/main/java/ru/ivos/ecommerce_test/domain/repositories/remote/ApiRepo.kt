@@ -1,4 +1,4 @@
-package ru.ivos.ecommerce_test.domain
+package ru.ivos.ecommerce_test.domain.repositories.remote
 
 import retrofit2.http.GET
 import ru.ivos.ecommerce_test.domain.models.remote.Details

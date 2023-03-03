@@ -6,14 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.ivos.ecommerce_test.domain.models.local.User
-import ru.ivos.ecommerce_test.domain.AppDao
+import ru.ivos.ecommerce_test.domain.repositories.local.UserDao
 import ru.ivos.ecommerce_test.domain.models.local.Favorite
+import ru.ivos.ecommerce_test.domain.repositories.local.FavoritesDao
 
 @Database(entities = [User::class, Favorite::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getDao(): AppDao
+    abstract fun getUserDao(): UserDao
+    abstract fun getFavoritesDao(): FavoritesDao
 
     companion object {
         private var instance: AppDatabase? = null
